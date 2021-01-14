@@ -8,7 +8,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore'
 
 const ChatRoomContainer = (props) => {
     const messagesRef = props.db.collection('messages')
-    const query = messagesRef.orderBy('createdAt').limit(25)
+    const query = messagesRef.orderBy('createdAt')
     const [chatmsgs] = useCollectionData(query, { idField: 'id' })
     return (
     <main>
