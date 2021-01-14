@@ -1,11 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, {useState, useRef} from 'react';
 import firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/auth'
 import { useAuthState  } from 'react-firebase-hooks/auth'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import Page from './Components/Page'
 
 
 firebase.initializeApp({
@@ -20,59 +21,35 @@ firebase.initializeApp({
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-const AddMessage = async (e) => {  
+const signInWithGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider);
+}
+const signOut = (e) => {
   e.preventDefault();
-  const { uid, photoURL } = auth.currentUser;
-  await db.collection('messages').add({
-    message: 'Hello, world!',
-    uid: uid,
-    photo: photoURL,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-
-})
+  auth.signOut()
 }
 
 
 const App = () => {
+  const [formValue, setFormValue] = useState('');
   const [user] = useAuthState(auth)
-  return(
-    <div>
-      <div>
-        {user ? <ChatRoom /> : <SignIn />}
-      </div>
-      <div>
-        <input></input>
-        <button onClick = {AddMessage}>Send</button>
-      </div>
-    </div>
-  )
-}
-const SignIn = () => {
-
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+  const dummy = useRef()
+  const AddMessage = async (e) => {
+    e.preventDefault();
+    const { uid, photoURL, displayName } = auth.currentUser;
+    await db.collection('messages').add({
+      message: formValue,
+      name: displayName,
+      uid: uid,
+      photo: photoURL,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  
+  })
+  setFormValue('');
+  dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
-
-  return (
-    <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
-    </>
-  )
-
-}
-const ChatRoom = () => {
-  const messagesRef = db.collection('messages')
-  const query = messagesRef.orderBy('createdAt').limit(25)
-  const [chatmsgs] = useCollectionData(query, { idField: 'id' })
-  console.log(chatmsgs)
-  return(
-    <div>
-      <h1>Messages:</h1>
-      {chatmsgs && chatmsgs.map(msg => <div key={msg.id}><img src={msg.photo}></img>{msg.message}</div>)}
-    </div>
-  )
+  return <Page dummy = {dummy} value = {formValue} setValue = {setFormValue} signOut = {signOut} user = {user} db = {db} auth = {auth} signInWithGoogle = {signInWithGoogle} AddMessage = {AddMessage}/>
 }
 
 export default App;
