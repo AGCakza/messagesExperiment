@@ -1,30 +1,18 @@
 import React from 'react'
-import {Message, Img, TextArea, Name, MyMessage} from './Styles'
+import {Messages, Img, TextArea, Name} from './Styles'
 
 const ChatRoom = (props) => {
-    let uid = props.uid
-    {if (uid === props.uid) console.log('repeat') 
-    else console.log('norepeat')}
     return(
-        <div>
-            {props.Myuid === props.msg.uid ? 
-                <MyMessage key = {props.msg.key}>
-                    <Img src = {props.msg.photo} />
-                        <TextArea>
-                        <Name>{props.msg.name}</Name>
+        <Messages>
+            
+            <div key = {props.msg.key} className = {props.uid === props.Myuid ? 'message message-my' : 'message'}>
+            { props.last.uid === props.msg.uid ? null : props.msg.uid === props.Myuid ? null : <Img src = {props.msg.photo} />}                    
+                    <TextArea className = { props.last.uid === props.msg.uid ? 'def' : null}>
+                        {props.Myuid === props.msg.uid ? null : props.last.uid === props.msg.uid ? null : <Name>{props.msg.name}</Name>}
                         <p>{props.msg.message}</p>
                     </TextArea>
-                </MyMessage> 
-            : 
-                <Message key = {props.msg.key}>
-                    <Img src = {props.msg.photo} />
-                    <TextArea>
-                        <Name>{props.msg.name}</Name>
-                        <p>{props.msg.message}</p>
-                    </TextArea>
-                </Message>
-            }
-        </div>
+            </div> 
+        </Messages>
     )
 }
 

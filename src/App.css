@@ -31,6 +31,7 @@ dd {
 
 /* Выставляем основные настройки по-умолчанию для body */
 body {
+  background: gray;
   min-height: 100vh;
   max-width: 600px;
   margin: 0 auto;

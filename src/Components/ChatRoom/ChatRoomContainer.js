@@ -12,11 +12,10 @@ const ChatRoomContainer = (props) => {
     const [chatmsgs] = useCollectionData(query, { idField: 'id' })
     return (
     <main>
-        {chatmsgs && chatmsgs.map(msg => <ChatRoom Myuid = {props.auth.currentUser.uid} msg = { msg } />)}
-
+        {chatmsgs && chatmsgs.map((msg, index) => <ChatRoom last = {chatmsgs[index-1] || msg} Myuid = {props.auth.currentUser.uid} msg = { msg } uid = {msg.uid} />)}
+        
         <span ref={props.dummy}></span>
     </main>
     )
 }
-
 export default ChatRoomContainer
