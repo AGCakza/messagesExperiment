@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import firebase from 'firebase'
 import 'firebase/firestore'
 import 'firebase/auth'
@@ -45,9 +45,9 @@ const App = () => {
       photo: photoURL,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
   
-  })
-  setFormValue('');
-  dummy.current.scrollIntoView({ behavior: 'smooth' });
+    })
+    setFormValue('');
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
   return <Page dummy = {dummy} value = {formValue} setValue = {setFormValue} signOut = {signOut} user = {user} db = {db} auth = {auth} signInWithGoogle = {signInWithGoogle} AddMessage = {AddMessage}/>
 }
