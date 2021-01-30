@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/messagesExperiment/static/css/main.d8398855.chunk.css",
-    "main.js": "/messagesExperiment/static/js/main.4dd7bd8c.chunk.js",
-    "main.js.map": "/messagesExperiment/static/js/main.4dd7bd8c.chunk.js.map",
+    "main.css": "/messagesExperiment/static/css/main.432cbb00.chunk.css",
+    "main.js": "/messagesExperiment/static/js/main.dc69a690.chunk.js",
+    "main.js.map": "/messagesExperiment/static/js/main.dc69a690.chunk.js.map",
     "runtime-main.js": "/messagesExperiment/static/js/runtime-main.314194f2.js",
     "runtime-main.js.map": "/messagesExperiment/static/js/runtime-main.314194f2.js.map",
     "static/js/2.141c3ad4.chunk.js": "/messagesExperiment/static/js/2.141c3ad4.chunk.js",
     "static/js/2.141c3ad4.chunk.js.map": "/messagesExperiment/static/js/2.141c3ad4.chunk.js.map",
     "index.html": "/messagesExperiment/index.html",
-    "static/css/main.d8398855.chunk.css.map": "/messagesExperiment/static/css/main.d8398855.chunk.css.map",
+    "static/css/main.432cbb00.chunk.css.map": "/messagesExperiment/static/css/main.432cbb00.chunk.css.map",
     "static/js/2.141c3ad4.chunk.js.LICENSE.txt": "/messagesExperiment/static/js/2.141c3ad4.chunk.js.LICENSE.txt",
     "static/media/logo.6ce24c58.svg": "/messagesExperiment/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.314194f2.js",
     "static/js/2.141c3ad4.chunk.js",
-    "static/css/main.d8398855.chunk.css",
-    "static/js/main.4dd7bd8c.chunk.js"
+    "static/css/main.432cbb00.chunk.css",
+    "static/js/main.dc69a690.chunk.js"
   ]
 }
